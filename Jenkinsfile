@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'subbareddy761/task-manager'      // Your Docker Hub image name
+        DOCKER_IMAGE = 'subbareddy716/task-manager'      // Your Docker Hub image name
         DOCKER_CREDENTIALS_ID = 'dockerhub'              // Must match Jenkins credentials ID
     }
 
