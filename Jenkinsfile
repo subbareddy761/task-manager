@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'subbareddy716/taskmanager'      // Your Docker Hub image name
+        DOCKER_IMAGE = 'subbareddy761/taskmanager'      // Your Docker Hub image name
         DOCKER_CREDENTIALS_ID = 'dockerhub'             // Must match Jenkins credentials ID
     }
 
     stages {
         stage('Checkout Source Code') {
             steps {
-                git url: 'https://github.com/subbareddy716/taskmanager.git',
+                git url: 'https://github.com/subbareddy761/taskmanager.git',
                 branch: 'main',
                 credentialsId: 'github-creds'
                 }
