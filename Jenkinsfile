@@ -9,9 +9,12 @@ pipeline {
     stages {
         stage('Checkout Source Code') {
             steps {
-                git url: 'https://github.com/subbareddy716/taskmanager.git', branch: 'main'
-            }
+                git url: 'https://github.com/subbareddy716/taskmanager.git',
+                branch: 'main',
+                credentialsId: 'github-creds'
+                }
         }
+
 
         stage('Build Docker Image') {
             steps {

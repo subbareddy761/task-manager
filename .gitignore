@@ -10,7 +10,6 @@ node_modules/
 __pycache__/
 *.py[cod]
 *.pyo
-
 # Ignore compiled files
 *.class
 *.o
