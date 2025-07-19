@@ -2,23 +2,21 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'subbareddy716/task-manager'      // Your Docker Hub image name
-        DOCKER_CREDENTIALS_ID = 'dockerhub'              // Must match Jenkins credentials ID
+        DOCKER_IMAGE = 'subbareddy716/task-manager'
+        DOCKER_CREDENTIALS_ID = 'dockerhub'
     }
 
     stages {
-        stage('Checkout Source Code') {
+        stage('Checkout') {
             steps {
-                git url: 'https://github.com/subbareddy761/task-manager.git',
-                    branch: 'main',
-                    credentialsId: 'github-creds'
+                git url: 'https://github.com/subbareddy761/task-manager.git', branch: 'main', credentialsId: 'github-creds'
             }
         }
 
         stage('Build Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.build("${DOCKER_IMAGE}", "--no-cache .")
+                    docker.build("${DOCKER_IMAGE}")
                 }
             }
         }
@@ -27,19 +25,10 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1/', DOCKER_CREDENTIALS_ID) {
-                        dockerImage.push('latest')
+                        docker.image("${DOCKER_IMAGE}").push()
                     }
                 }
             }
-        }
-    }
-
-    post {
-        success {
-            echo '✅ Image successfully pushed to Docker Hub!'
-        }
-        failure {
-            echo '❌ Build failed. Check console logs.'
         }
     }
 }
